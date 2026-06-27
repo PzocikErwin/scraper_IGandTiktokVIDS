@@ -16,12 +16,12 @@ def tiktok_action(page: Page):
     page.wait_for_timeout(5000) # esperar carga
     
     # 1. Comprobar inicio de sesión
-    if "login" in page.url or page.locator("text='Log in'").is_visible() or page.locator("text='Iniciar sesión'").is_visible():
+    if "login" in page.url or page.locator("text='Log in'").first.is_visible() or page.locator("text='Iniciar sesión'").first.is_visible():
         print("[TikTok] No se detectó sesión iniciada. Por favor, loguéate en la ventana del navegador.")
         # Esperar a que el usuario se loguee y sea redireccionado a una página que no sea login
         for i in range(12): # Esperar hasta 2 minutos
             page.wait_for_timeout(10000)
-            if "login" not in page.url and not page.locator("text='Log in'").is_visible():
+            if "login" not in page.url and not page.locator("text='Log in'").first.is_visible():
                 print("[TikTok] ¡Sesión iniciada correctamente!")
                 break
         else:
@@ -60,7 +60,7 @@ def tiktok_action(page: Page):
         
     # 3. Hacer scroll para cargar videos
     print("[TikTok] Desplazando página (scroll) para cargar videos favoritos...")
-    for i in range(15):
+    for i in range(30):
         page.evaluate("window.scrollBy(0, 1000)")
         page.wait_for_timeout(1500)
     
@@ -116,7 +116,7 @@ def instagram_action(page: Page):
             
     # 3. Hacer scroll para cargar reels/publicaciones guardadas
     print("[Instagram] Desplazando página (scroll) para cargar videos guardados...")
-    for i in range(15):
+    for i in range(30):
         page.evaluate("window.scrollBy(0, 1000)")
         page.wait_for_timeout(1500)
         
