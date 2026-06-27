@@ -1,0 +1,5 @@
+scrapling
+yt-dlp
+openai-whisper
+sentence-transformers
+numpy
