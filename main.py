@@ -75,9 +75,16 @@ def search(query):
     for i, res in enumerate(results, 1):
         score_percent = int(res['score'] * 100)
         snippet = res['transcript'][:200].replace('\n', ' ') + "..."
+        
+        # Prevent UnicodeEncodeError on Windows terminal
+        try:
+            safe_snippet = snippet.encode(sys.stdout.encoding, errors='replace').decode(sys.stdout.encoding)
+        except Exception:
+            safe_snippet = snippet.encode('utf-8', errors='ignore').decode('utf-8')
+            
         print(f"\n{i}. [{score_percent}% de coincidencia] {res['platform'].capitalize()}")
         print(f"   Enlace: {res['url']}")
-        print(f"   Fragmento: \"{snippet}\"")
+        print(f"   Fragmento: \"{safe_snippet}\"")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="TikTok/Instagram Saved Videos Semantic Search")

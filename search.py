@@ -35,7 +35,7 @@ def search_videos(query, stored_videos, top_k=5):
         vid, platform, url, title, transcript, embedding_json = video
         import json
         try:
-            doc_emb = np.array(json.loads(embedding_json))
+            doc_emb = np.array(json.loads(embedding_json), dtype=np.float32)
             # Compute cosine similarity
             score = util.cos_sim(query_emb, doc_emb).item()
             results.append({
@@ -47,6 +47,7 @@ def search_videos(query, stored_videos, top_k=5):
                 "score": score
             })
         except Exception as e:
+            print(f"Error procesando video {vid}: {e}")
             continue
             
     # Sort by score descending
