@@ -10,7 +10,7 @@ Actualmente esta herramienta funciona por línea de comandos. Sin embargo, se ti
 El proyecto está dividido en varios módulos que trabajan en cadena:
 
 1. **Extracción (Scraping):** 
-   Se utiliza la librería [Scrapling](https://github.com/D4Vinci/Scrapling) (un framework adaptativo de web scraping) junto con su `StealthySession`. Esto permite evadir las estrictas protecciones anti-bots de Cloudflare, Instagram y TikTok, manteniendo un contexto de navegador persistente donde solo es necesario iniciar sesión una vez de forma segura.
+   Se utiliza la librería [Scrapling](https://github.com/D4Vinci/Scrapling) (un framework adaptativo de web scraping) junto con su `StealthySession`. Esto permite evadir las estrictas protecciones anti-bots de Cloudflare, Instagram y TikTok, manteniendo un contexto de navegador de Patchright persistente donde solo es necesario iniciar sesión una vez de forma segura.
 2. **Descarga de Audio:** 
    Se utiliza `yt-dlp` para descargar únicamente la pista de audio de los videos extraídos. Esto ahorra espacio de almacenamiento y agiliza el proceso.
 3. **Transcripción:** 
@@ -37,8 +37,8 @@ python -m venv venv
 # Instalar dependencias del proyecto
 pip install -r requirements.txt
 
-# Instalar el navegador oculto requerido por Scrapling/Playwright
-playwright install chromium
+# Instalar el navegador oculto requerido por Scrapling/Patchright
+python -m patchright install chromium
 ```
 
 ## Uso de la Herramienta

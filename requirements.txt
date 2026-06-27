@@ -1,4 +1,9 @@
 scrapling
+patchright
+playwright
+curl-cffi
+msgspec
+browserforge
 yt-dlp
 openai-whisper
 sentence-transformers
