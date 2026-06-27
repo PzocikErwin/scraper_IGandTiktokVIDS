@@ -5,18 +5,18 @@ Una potente herramienta de línea de comandos (CLI) diseñada para automatizar l
 ## Próximamente: Interfaz Gráfica (UI)
 Actualmente esta herramienta funciona por línea de comandos. Sin embargo, se tiene planeado agregar una **interfaz visual interactiva** en el futuro para facilitar su uso a personas menos técnicas, evitando que tengan que interactuar directamente con código o consolas.
 
-## ¿Cómo funciona?
+## ¿Qué hace el bot y cómo funciona?
 
-El proyecto está dividido en varios módulos que trabajan en cadena:
+El proyecto automatiza todo el proceso de recopilación y búsqueda de videos, funcionando en cadena de la siguiente manera:
 
-1. **Extracción (Scraping):** 
-   Se utiliza la librería [Scrapling](https://github.com/D4Vinci/Scrapling) (un framework adaptativo de web scraping) junto con su `StealthySession`. Esto permite evadir las estrictas protecciones anti-bots de Cloudflare, Instagram y TikTok, manteniendo un contexto de navegador de Patchright persistente donde solo es necesario iniciar sesión una vez de forma segura.
+1. **Navegación y Extracción (Scraping):** 
+   El bot se conecta automáticamente a tu cuenta (previamente iniciada), navega hasta tus videos guardados o favoritos y realiza **"x" scrolls** automáticos en la página para recopilar los enlaces de los videos.
 2. **Descarga de Audio:** 
-   Se utiliza `yt-dlp` para descargar únicamente la pista de audio de los videos extraídos. Esto ahorra espacio de almacenamiento y agiliza el proceso.
-3. **Transcripción:** 
-   El audio es procesado localmente mediante el modelo **Whisper** de OpenAI (gratuito y privado) para convertir la voz en texto.
-4. **Almacenamiento y Búsqueda Semántica:** 
-   La transcripción se procesa a través de `sentence-transformers` para generar vectores matemáticos (Embeddings). Todo se guarda en una base de datos local SQLite (`videos.db`). El sistema busca por "significado" y contexto (similitud del coseno), no solo por coincidencias exactas de palabras.
+   Se descargarán únicamente las pistas de audio de esos "x" videos hacia tu computadora.
+3. **Transcripción y Limpieza:** 
+   El audio es procesado localmente mediante inteligencia artificial (modelo **Whisper**) para convertir la voz a texto. Inmediatamente después, **el audio se elimina de la computadora para evitar acumular archivos y datos basura**.
+4. **Búsqueda Inteligente:** 
+   Otra inteligencia artificial se encarga de analizar todas las transcripciones en tu base de datos local. Al ingresar un texto o descripción, el sistema busca similitudes según el significado de tu búsqueda y **provee los links exactos** de los videos correspondientes.
 
 ## Instalación
 
