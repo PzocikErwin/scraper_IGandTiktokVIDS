@@ -60,7 +60,7 @@ def tiktok_action(page: Page):
         
     # 3. Hacer scroll para cargar videos
     print("[TikTok] Desplazando página (scroll) para cargar videos favoritos...")
-    for i in range(8):
+    for i in range(15):
         page.evaluate("window.scrollBy(0, 1000)")
         page.wait_for_timeout(1500)
     
@@ -116,7 +116,7 @@ def instagram_action(page: Page):
             
     # 3. Hacer scroll para cargar reels/publicaciones guardadas
     print("[Instagram] Desplazando página (scroll) para cargar videos guardados...")
-    for i in range(8):
+    for i in range(15):
         page.evaluate("window.scrollBy(0, 1000)")
         page.wait_for_timeout(1500)
         
